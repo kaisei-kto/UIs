@@ -811,12 +811,7 @@ function Library:Create()
 					Parent = progress
 				})
 				
-				local debounce = false
-
 				local function callback(newToggle: boolean)
-					if debounce then return end
-
-					debounce = true
 					toggle = newToggle
 
 					Tween(pointer, .1, {
@@ -827,13 +822,9 @@ function Library:Create()
 						Size = UDim2.new(toggle and 1 or 0, 0, 0, 10)
 					}):Play()
 
-					task.wait(.1)
-
 					if typeof(f) == 'function' then
-						task.spawn(function() f(toggle) end)
+						task.spawn(f, toggle)
 					end
-					
-					debounce = false
 				end
 
 				Connections:Add(Create('TextButton', {
