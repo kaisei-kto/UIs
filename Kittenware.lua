@@ -837,9 +837,7 @@ function Library:Create()
 					callback(not toggle)
 				end))
 
-				task.spawn(function()
-					callback(toggle)
-				end)
+				callback(toggle)
 
 				return function (newToggle: boolean)
 					callback(newToggle);
