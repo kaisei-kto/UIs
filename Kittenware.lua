@@ -830,7 +830,7 @@ function Library:Create()
 					task.wait(.1)
 
 					if typeof(f) == 'function' then
-						f(toggle)
+						task.spawn(function() f(toggle) end)
 					end
 					
 					debounce = false
